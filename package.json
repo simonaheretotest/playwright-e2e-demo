@@ -1,0 +1,17 @@
+{
+  "name": "playwright-e2e-demo",
+  "version": "1.0.0",
+  "description": "End-to-end tests for saucedemo.com with Playwright and TypeScript",
+  "type": "commonjs",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:headed": "npx playwright test --project=chromium --headed",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "dotenv": "^18.0.10"
+  }
+}
