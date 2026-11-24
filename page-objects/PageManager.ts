@@ -5,6 +5,7 @@ import { InventoryPage } from './InventoryPage';
 export class PageManager {
   readonly login: LoginPage;
   readonly inventory: InventoryPage;
+  
   // TODO: add cart and checkout pages when you create them
 
   constructor(page: Page) {

@@ -2,8 +2,41 @@ import { test, expect } from '@playwright/test';
 import { PageManager } from '../page-objects/PageManager';
 
 test.describe('Sorting', () => {
-  // TODO: price low to high -> prices are in ascending order
-  //   hint: get all prices as numbers, copy the array, sort the copy, compare with toEqual
-  // TODO: price high to low
-  // TODO: name Z to A -> first product name starts with "Test.allTheThings()"
+let pm: PageManager;
+
+  test.beforeEach(async ({ page }) => {
+    pm = new PageManager(page);
+    await pm.login.open();
+    await pm.login.login(process.env.STANDARD_USER!, process.env.PASSWORD!);
+    await expect(page).toHaveURL(/inventory/);
+  });
+
+test("prices are sorted from low to high", async () => {
+  await pm.inventory.sortBy("lohi");
+  const actualPrices = await pm.inventory.getAllPrices();
+  const expectedPrices = [...actualPrices].sort((a, b) => a - b);
+  expect(actualPrices).toEqual(expectedPrices);
 });
+
+test("prices are sorted from high to low", async () => {
+  await pm.inventory.sortBy("hilo");
+  const actualPrices = await pm.inventory.getAllPrices();
+  const expectedPrices = [...actualPrices].sort((a, b) => b - a);
+  expect(actualPrices).toEqual(expectedPrices);
+});
+
+test("item names are sorted from a to z", async () => {
+  await pm.inventory.sortBy("az");
+  const actualNames = await pm.inventory.getAllNames();
+  const expectedNames = [...actualNames].sort((a, b) => a.localeCompare(b));
+  expect(actualNames).toEqual(expectedNames);
+});
+
+test("item names are sorted from z to a", async () => {
+  await pm.inventory.sortBy("za");
+  const actualNames = await pm.inventory.getAllNames();
+  const expectedNames = [...actualNames].sort((a, b) => b.localeCompare(a));
+  expect(actualNames).toEqual(expectedNames);
+});
+
+})

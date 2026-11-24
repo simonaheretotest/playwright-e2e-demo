@@ -1,6 +1,5 @@
 import { Page, Locator } from '@playwright/test';
 
-// EXAMPLE page object – use it as a pattern for the others
 export class LoginPage {
   readonly page: Page;
   readonly usernameInput: Locator;

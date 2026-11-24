@@ -25,7 +25,7 @@ test.describe("Login", () => {
     await expect(pm.login.errorMessage).toContainText("Password is required");
   });
 
-  test("empty usernameshows an error", async () => {
+  test("empty username shows an error", async () => {
     await pm.login.login("", process.env.PASSWORD!);
     await expect(pm.login.errorMessage).toContainText("Username is required");
   });
