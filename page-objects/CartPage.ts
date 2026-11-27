@@ -6,6 +6,7 @@ export class CartPage {
   readonly cartBadge: Locator;
   readonly itemPrices: Locator;
   readonly itemNames: Locator;
+  readonly 	checkoutButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +14,7 @@ export class CartPage {
     this.cartBadge = page.getByTestId("shopping-cart-badge");
     this.itemPrices = page.getByTestId("inventory-item-price");
     this.itemNames = page.getByTestId("inventory-item-name");
+    this.checkoutButton = page.getByTestId("checkout")
   }
 
   async removeFromCart(productId: string) {
@@ -32,4 +34,9 @@ async getAllPrices(): Promise<number[]> {
   
     return items;
   }
+
+    async openCheckout() {
+    await this.checkoutButton.click();
+  }
+
 }
