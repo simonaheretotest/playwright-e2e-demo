@@ -46,10 +46,6 @@ npm run test:headed   # watch it in Chromium
 npm run report        # open the HTML report
 ```
 
-## Report
-
-![HTML report](docs/report.png)
-
 ## What I learned
 
 - **Flaky test fix:** the item-total test sometimes read prices before the checkout page had loaded. `allTextContents()` doesn't wait, so I added a web-first assertion (`toHaveCount`) before reading the values.
@@ -59,4 +55,4 @@ npm run report        # open the HTML report
 ## Author
 
 Simona – QA tester (ISTQB CTFL), moving from manual testing to automation.
-[GitHub](https://github.com/simonaheretotest) · [LinkedIn](YOUR-LINK)
+[GitHub](https://github.com/simonaheretotest)
